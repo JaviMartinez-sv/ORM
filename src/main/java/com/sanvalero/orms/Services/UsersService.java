@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class UsersService {
+
     @Autowired
     private UsersRepository usersRepository;
     @Autowired
@@ -40,5 +41,13 @@ public class UsersService {
         Optional<UserEntity> entityToDelete = usersRepository.findById(ID);
         if(entityToDelete.isPresent())
             usersRepository.delete(entityToDelete.get());
+    }
+
+    public Optional<UserDTO> findById(Long id){
+        Optional<UserEntity> entity = usersRepository.findById(id);
+        if(entity.isPresent())
+            return Optional.of(modelMapper.map(entity.get(), UserDTO.class));
+        else
+            return Optional.empty();
     }
 }
