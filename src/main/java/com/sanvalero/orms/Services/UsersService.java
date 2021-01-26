@@ -1,6 +1,7 @@
 package com.sanvalero.orms.Services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.sanvalero.orms.Repositories.Entities.UserEntity;
@@ -27,5 +28,17 @@ public class UsersService {
         UserEntity entityToInsert = modelMapper.map(user, UserEntity.class);
         UserEntity result = usersRepository.save(entityToInsert);
         return modelMapper.map(result, UserDTO.class);
+    }
+
+    public UserDTO update(Long ID, UserDTO user){
+        UserEntity entityToUpdate = modelMapper.map(user, UserEntity.class);
+        UserEntity result = usersRepository.save(entityToUpdate);
+        return modelMapper.map(result, UserDTO.class);
+    }
+
+    public void delete(Long ID){
+        Optional<UserEntity> entityToDelete = usersRepository.findById(ID);
+        if(entityToDelete.isPresent())
+            usersRepository.delete(entityToDelete.get());
     }
 }
