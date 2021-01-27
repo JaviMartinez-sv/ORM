@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:insert="~{fragments/changelang.html :: head}">
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</header>
+<body th:object="${user}">
+    <form th:action="*{id} == 0?
+                    @{/v2/users} :
+                    @{|/v2/users/*{id}|}"
+        th:method="POST"
+        th:value="*{id}">
+        <div th:replace="~{fragments/changelang.html :: body}">
+        </div>
+        <p><span th:text="#{id}"></span><input th:field="*{id}"></p>
+        <p><span th:text="#{name}"></span><input th:field="*{name}"></p>
+        <p><input type="submit" th:value="#{submit}"/></p>
+    </form>
+</body>
+</html>

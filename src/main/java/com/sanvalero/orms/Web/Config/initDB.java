@@ -1,6 +1,8 @@
 package com.sanvalero.orms.Web.Config;
 
+import com.sanvalero.orms.Repositories.Entities.PostEntity;
 import com.sanvalero.orms.Repositories.Entities.UserEntity;
+import com.sanvalero.orms.Repositories.Interfaces.PostsRepository;
 import com.sanvalero.orms.Repositories.Interfaces.UsersRepository;
 
 import org.springframework.boot.CommandLineRunner;
@@ -18,4 +20,15 @@ public class initDB {
         };
 
     }
+
+    @Bean
+    CommandLineRunner initDataBase(PostsRepository repository) {
+
+        return args ->{
+            repository.save(new PostEntity("Post 1"));
+            repository.save(new PostEntity("Post 2"));
+        };
+
+    }
+
 }
