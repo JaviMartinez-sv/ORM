@@ -48,4 +48,10 @@ public class PostsService {
         else
             return Optional.empty();
     }
+
+    public List<PostDTO> findByUserId(Long userId){
+        return postsRepository.findByUserId(userId).stream()
+                .map(x -> modelMapper.map(x, PostDTO.class))
+                .collect(Collectors.toList());
+    }
 }

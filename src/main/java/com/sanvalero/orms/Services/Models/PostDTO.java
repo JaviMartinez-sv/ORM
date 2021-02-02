@@ -4,6 +4,7 @@ public class PostDTO {
     
     private String name;
     private Long id;
+    private Long UserID;
 
     public String getName(){
         return name;
@@ -19,5 +20,11 @@ public class PostDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public Long getUserID(){
+        return UserID;
+    }
+    public void setUserID(Long UserID){
+        this.UserID = UserID;
     }
 }

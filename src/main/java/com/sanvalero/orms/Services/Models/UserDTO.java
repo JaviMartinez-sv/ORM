@@ -4,6 +4,7 @@ public class UserDTO {
     
     private String name;
     private Long id;
+    
 
     public String getName(){
         return name;

@@ -10,12 +10,12 @@ import javax.persistence.Table;
 
 public class PostEntity {
     private @Id @GeneratedValue Long id;
-    private String name;
+    private String text;
 
     public PostEntity(){}
 
-    public PostEntity(String name) {
-        this.name = name;
+    public PostEntity(String text) {
+        this.text = text;
 
     }
 
@@ -26,11 +26,28 @@ public class PostEntity {
         this.id =id;
 
     }
-    public String getName(){
-        return name;
+    public String getText(){
+        return text;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setText(String text){
+        this.text = text;
     }
+
+    private Long userID;
+
+
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
+    public PostEntity(Long userID, String text) {
+        this.userID= userID;
+        this.text =text;
+    }
+
+
 }
