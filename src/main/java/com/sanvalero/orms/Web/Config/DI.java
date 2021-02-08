@@ -1,5 +1,6 @@
 package com.sanvalero.orms.Web.Config;
 
+import com.sanvalero.orms.Services.PostsAsyncService;
 import com.sanvalero.orms.Services.PostsService;
 import com.sanvalero.orms.Services.UsersService;
 
@@ -22,6 +23,11 @@ public class DI {
     @Bean
     ModelMapper createModelMapper(){
         return new ModelMapper();
+    }
+
+    @Bean
+    PostsAsyncService createPostAsyncService(){
+        return new PostsAsyncService();
     }
 
 }

@@ -1,7 +1,6 @@
 package com.sanvalero.orms.Web.API;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.sanvalero.orms.Services.PostsService;
 import com.sanvalero.orms.Services.Models.PostDTO;
@@ -42,17 +41,29 @@ public class PostsController {
         postsService.delete(id);
     }
 
-    @GetMapping()
+  /*  @GetMapping()
     public List<PostDTO> GetPosts(@RequestParam(
                                 name="userId",
                                 required=false,
-                                defaultValue="0") int userid){
-        var result = postsService.getAll();
-        if(userid !=0){
-            result = result.stream()
-                .filter(x -> x.getUserID() == userid)
-                .collect(Collectors.toList());
+                                defaultValue = "0") Long userId){
+        if(userId !=0){
+            return postsService.findByUserId(userId);
         }
-        return result;
+        else{
+            return postsService.getAll();
+        }
+    }
+    */
+    @GetMapping()
+    public List<PostDTO> GetPosts(@RequestParam(
+                                name="Salary",
+                                required=false,
+                                defaultValue = "0") Long Salary){
+        if(Salary !=0){
+            return postsService.findBySalary(Salary);
+        }
+        else{
+            return postsService.getAll();
+        }
     }
 }

@@ -1,32 +1,29 @@
 package com.sanvalero.orms.Repositories.Interfaces;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import com.sanvalero.orms.Repositories.Entities.PostEntity;
-import com.sanvalero.orms.Repositories.Entities.UserEntity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.scheduling.annotation.Async;
 
-public interface PostsRepository 
-    extends JpaRepository<PostEntity, Long>{
-
+public interface PostsAsyncRepository
+   extends JpaRepository<PostEntity, Long> {
     
+    @Async
     @Query(value = "SELECT p "+
                     " FROM Posts p" + 
                     " WHERE userId = :userId")
     
-    Collection<PostEntity> findByUserId(
+    CompletableFuture<List<PostEntity>> findByUserIdAsync(
         @Param("userId") Long userId
     );
 
-    @Query(value = " SELECT p" +
-    " FROM Posts p " + 
-    " INNER JOIN Users u ON p.userID = u.id" +
-    " WHERE salary > :salary")
+    @Async
+    @Query("select p from Posts p")  
+    CompletableFuture<List<PostEntity>> findAllAsync();
 
-    Collection<UserEntity> findBySalary(
-    @Param("salary") Long salary
-    );
 }

@@ -13,6 +13,7 @@ public class UserEntity {
     
     private @Id @GeneratedValue Long id;
     private String name;
+    private long salary;
 
     public UserEntity(){}
 
@@ -34,6 +35,19 @@ public class UserEntity {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public long getSalary() {
+        return salary;
+    }
+
+    public void setSalario(long salary) {
+        this.salary = salary;
+    }
+
+    public UserEntity(String name, long salary) {
+        this.name = name;
+        this.salary = salary;
     }
     
     

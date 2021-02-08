@@ -54,4 +54,9 @@ public class PostsService {
                 .map(x -> modelMapper.map(x, PostDTO.class))
                 .collect(Collectors.toList());
     }
+    public List<PostDTO> findBySalary(Long salary){
+        return postsRepository.findBySalary(salary).stream()
+                .map(x -> modelMapper.map(x, PostDTO.class))
+                .collect(Collectors.toList());
+    }
 }

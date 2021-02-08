@@ -4,7 +4,7 @@ public class UserDTO {
     
     private String name;
     private Long id;
-    
+    private long salary;
 
     public String getName(){
         return name;
@@ -20,5 +20,13 @@ public class UserDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(long salary) {
+        this.salary = salary;
     }
 }
